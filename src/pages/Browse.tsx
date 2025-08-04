@@ -1,5 +1,3 @@
-import CitiesComponents from "../components/CitiesComponents";
-import OfficeCardComponents from "../components/OfficeCardComponents";
 import CityWrapper from "../wrappers/CitiesWrappers";
 import OfficeCardWrapper from "../wrappers/OfficeCardWrapper";
 

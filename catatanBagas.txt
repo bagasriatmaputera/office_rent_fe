@@ -1,3 +1,24 @@
 1. Buat project react dan gunakan typescript + SWT denganvite
 2. Setelah jadi instal npm dengan = npm i ,kemudian npm run denganvite
-3. 
+3. Buat folder pages, wrappers, components, types
+4. Instal react-router-dom dengan npm instal react-router-dom
+5. Buat BrowseRoute di app dan buat Routes, Route nya juga
+    return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Browse />} />
+        <Route path="/city/:slug" element={<CityDetails />} />
+        <Route path="/office/:slug" element={<OfficeDetails />} />
+        <Route path="/office/:slug/book" element={<BookOffice />} />
+        <Route path="/success-booking" element={<SuccessBooking />} />
+        <Route path="/check-booking" element={<CheckBooking />} />
+      </Routes>
+    </BrowserRouter>
+  )
+6. Buat Page sesuai elelmt diatas
+7. Copy template untuk browse kemudai instal swiper
+    npm instal swiper
+8. Buat card juga wrapper masing masing section sesuai kebutuhan
+9. instal axios
+10. Buat types.ts unutk mengatur type data typescript
+11. Jika sudah ambil data dengan axios pada wrapper dan kemudian ambil hasil dicomponents
