@@ -1,0 +1,3 @@
+1. Buat project react dan gunakan typescript + SWT denganvite
+2. Setelah jadi instal npm dengan = npm i ,kemudian npm run denganvite
+3. 
