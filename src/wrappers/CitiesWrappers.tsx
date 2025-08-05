@@ -53,7 +53,7 @@ export default function CityWrapper() {
                     <Swiper
                         className='w-full mt-3 '
                         direction='horizontal'
-                        spaceBetween={5}
+                        spaceBetween={0}
                         slidesPerView= {4}
                         slidesOffsetBefore={20}
                         slidesOffsetAfter={15}
