@@ -8,10 +8,10 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                 <div className="flex flex-col rounded-[20px] border border-[#E0DEF7] bg-white overflow-hidden">
                     <div className="thumbnail-container relative w-full h-[200px]">
                         <p className="absolute top-5 left-5 w-fit rounded-full p-[6px_16px] bg-[#0D903A] font-bold text-sm leading-[21px] text-[#F7F7FD]">
-                            Popular
+                            {office.is_open === true ? 'Closed' : 'Open'}
                         </p>
                         <img
-                            src={`${baseUrl}/${office.photo}`}
+                            src={`${baseUrl}/${office.thumbnail}`}
                             className="w-full h-full object-cover"
                             alt="thumbnails"
                         />
@@ -41,7 +41,7 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                                     className="w-6 h-6"
                                     alt="icon"
                                 />
-                                <p className="font-semibold">{office.city.name}</p>
+                                <p className="font-semibold">{office.city?.name}</p>
                             </div>
                             <div className="flex items-center justify-end gap-[6px]">
                                 <p className="font-semibold">4.5/5</p>

@@ -3,9 +3,12 @@ export interface Office {
     name: string,
     slug: string,
     price: number,
+    is_open: boolean,
+    is_full_booked: boolean
     duration: number,
     about: string,
     city: City,
+    thumbnail: string;
     photo: Photo[],
     benefits: Benefits[]
 }

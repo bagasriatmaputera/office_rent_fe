@@ -23,7 +23,6 @@ export default function CityWrapper() {
             setLoading(false)
         })
     }, []);
-    console.log(city)
     if (loading) {
         return <p>Loading...</p>
     }

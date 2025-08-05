@@ -22,3 +22,6 @@
 9. instal axios
 10. Buat types.ts unutk mengatur type data typescript
 11. Jika sudah ambil data dengan axios pada wrapper dan kemudian ambil hasil dicomponents
+12. Lakukan untuk OfficeCard dan CitiesCard
+13. Untuk Badge gunakan data boolean dan lakukan logika if
+  {office.is_open === true ? 'Closed' : 'Open'}
