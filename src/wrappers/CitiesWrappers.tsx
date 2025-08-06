@@ -3,6 +3,7 @@ import CitiesComponents from "../components/CitiesComponents";
 import type { City } from "../types/types";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
 
 export default function CityWrapper() {
     const [city, setCity] = useState<City[]>([]);
@@ -53,14 +54,15 @@ export default function CityWrapper() {
                         className='w-full mt-3 '
                         direction='horizontal'
                         spaceBetween={0}
-                        slidesPerView= {4}
+                        slidesPerView={4}
                         slidesOffsetBefore={20}
                         slidesOffsetAfter={15}
                     >
                         {city.length > 0 ? (
                             city.map((cities) => (
                                 <SwiperSlide key={cities.id}>
-                                    <CitiesComponents cities={cities} />
+                                    <Link to={`/city/${cities.slug}`}>
+                                        <CitiesComponents cities={cities} /></Link>
                                 </SwiperSlide>
                             ))) : <p>Data kosong</p>
                         }

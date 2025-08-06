@@ -25,3 +25,20 @@
 12. Lakukan untuk OfficeCard dan CitiesCard
 13. Untuk Badge gunakan data boolean dan lakukan logika if
   {office.is_open === true ? 'Closed' : 'Open'}
+14. Buat Page CityDetails dan gunakan useParams untuk ambil router
+    const { slug } = useParams<{ slug: string }>();
+15. Guanaka UseEffect untuk ambil data sesuai slug
+    useEffect(() => {
+        axios.get(`http://localhost/officeRentWebBE/public/api/city/${slug}`, {
+            headers: {
+                'x-api-key': 'qwe23asd456#fsd$'
+            }
+        }).then((response) => {
+            setLoading(false)
+            setCity(response.data.data)
+        }).catch((error) => {
+            setError(error.message && 'Error fetch data')
+        })
+    }, [slug])
+
+  16. Implementasikan data ke CityDetails kemudian perhatikan types harus sesuai nama column pada database

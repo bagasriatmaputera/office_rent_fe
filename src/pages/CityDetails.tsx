@@ -22,7 +22,7 @@ export default function CityDetails() {
             setError(error.message && 'Error fetch data')
         })
     }, [slug])
-
+    console.log(city)
     if (loading) {
         return <p>Loading..</p>
     }
@@ -107,7 +107,7 @@ export default function CityDetails() {
                     Browse Offices
                 </h2>
                 <div className="grid grid-cols-3 gap-[30px]">
-                    {city.office_spaces?.map((office) => (
+                    {city.officeSpace?.map((office) => (
                         <OfficeCardComponents key={office.id} office={office} />
                     ))}
                 </div>

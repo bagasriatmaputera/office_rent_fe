@@ -27,7 +27,7 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                             <div className="flex items-center justify-end gap-[6px]">
                                 <p className="font-semibold">{office.duration}</p>
                                 <img
-                                    src="images/icons/clock.svg"
+                                    src="/public/images/icons/clock.svg"
                                     className="w-6 h-6"
                                     alt="icon"
                                 />
@@ -37,7 +37,7 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                         <div className="flex items-center justify-between">
                             <div className="flex items-center justify-end gap-[6px]">
                                 <img
-                                    src="images/icons/location.svg"
+                                    src="/public/images/icons/location.svg"
                                     className="w-6 h-6"
                                     alt="icon"
                                 />
@@ -46,7 +46,7 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                             <div className="flex items-center justify-end gap-[6px]">
                                 <p className="font-semibold">4.5/5</p>
                                 <img
-                                    src="images/icons/Star 1.svg"
+                                    src="/public/images/icons/Star 1.svg"
                                     className="w-6 h-6"
                                     alt="icon"
                                 />
@@ -56,7 +56,7 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                         <div className="flex items-center justify-between">
                             <div className="flex items-center justify-end gap-[6px]">
                                 <img
-                                    src="images/icons/wifi.svg"
+                                    src="/public/images/icons/wifi.svg"
                                     className="w-6 h-6"
                                     alt="icon"
                                 />
@@ -64,7 +64,7 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                             </div>
                             <div className="flex items-center justify-end gap-[6px]">
                                 <img
-                                    src="images/icons/security-user.svg"
+                                    src="/public/images/icons/security-user.svg"
                                     className="w-6 h-6"
                                     alt="icon"
                                 />
