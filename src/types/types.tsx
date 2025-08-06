@@ -19,7 +19,7 @@ export interface City {
     slug: string,
     photo: string,
     office_count: number,
-    office_spaces: Office
+    office_spaces: Office[]
 }
 
 interface Photo {
