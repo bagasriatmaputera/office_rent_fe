@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { Office } from "../types/types";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -246,17 +246,18 @@ export default function OfficeDetails() {
                         </div>
                         <hr className="border-[#F6F5FD]" />
                         <div className="flex flex-col gap-[14px]">
-                            <a
-                                href="booking.html"
-                                className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]"
-                            >
-                                <img
-                                    src="/public/images/icons/slider-horizontal-white.svg"
-                                    className="w-6 h-6"
-                                    alt="icon"
-                                />
-                                <span>Book This Office</span>
-                            </a>
+                            <Link to={`/officespace/${office?.slug}/book`}>
+                                <div
+                                    className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]"
+                                >
+                                    <img
+                                        src="/public/images/icons/slider-horizontal-white.svg"
+                                        className="w-6 h-6"
+                                        alt="icon"
+                                    />
+                                    <span>Book This Office</span>
+                                </div>
+                            </Link>
                             <button className="flex items-center justify-center w-full rounded-full border border-[#000929] p-[16px_26px] gap-3 bg-white font-semibold">
                                 <img
                                     src="/public/images/icons/save-add.svg"
