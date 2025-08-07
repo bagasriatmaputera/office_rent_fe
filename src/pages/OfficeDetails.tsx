@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import type { Office } from "../types/types";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
+import NavbarComponent from "../components/Navbar";
 
 export default function OfficeDetails() {
     const { slug } = useParams<{ slug: string }>();
@@ -31,41 +32,7 @@ export default function OfficeDetails() {
     }
     return (
         <>
-            <nav className="bg-white">
-                <div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-                    <a href="index.html">
-                        <img src="/public/images/logos/logo.svg" alt="logo" />
-                    </a>
-                    <ul className="flex items-center gap-[50px] w-fit">
-                        <li>
-                            <a href="">Browse</a>
-                        </li>
-                        <li>
-                            <a href="">Popular</a>
-                        </li>
-                        <li>
-                            <a href="">Categories</a>
-                        </li>
-                        <li>
-                            <a href="">Events</a>
-                        </li>
-                        <li>
-                            <a href="view-booking-details.html">My Booking</a>
-                        </li>
-                    </ul>
-                    <a
-                        href="#"
-                        className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5"
-                    >
-                        <img
-                            src="/public/images/icons/call.svg"
-                            className="w-6 h-6"
-                            alt="icon"
-                        />
-                        <span className="font-semibold">Contact Us</span>
-                    </a>
-                </div>
-            </nav>
+            <NavbarComponent></NavbarComponent>
             <section id="Gallery" className="-mb-[50px]">
                 <Swiper className="w-full"
                     direction='horizontal'
@@ -240,7 +207,7 @@ export default function OfficeDetails() {
                     <div className="flex flex-col rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
                         <div>
                             <p className="font-extrabold text-[32px] leading-[48px] text-[#0D903A]">
-                                {office?.price.toLocaleString('IDR')}
+                                Rp {office?.price.toLocaleString('IDR')}
                             </p>
                             <p className="font-semibold mt-1">For {office?.duration} days working</p>
                         </div>

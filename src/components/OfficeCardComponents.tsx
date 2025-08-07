@@ -22,7 +22,7 @@ export default function OfficeCardComponents({office}: OfficeCardProps) {
                         </h3>
                         <div className="flex items-center justify-between">
                             <p className="font-semibold text-xl leading-[30px]">
-                                {office.price.toLocaleString('IDR')}
+                                Rp {office.price.toLocaleString('IDR')}
                             </p>
                             <div className="flex items-center justify-end gap-[6px]">
                                 <p className="font-semibold">{office.duration}</p>

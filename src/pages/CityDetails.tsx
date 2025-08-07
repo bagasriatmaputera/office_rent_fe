@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { City } from "../types/types";
 import axios from "axios";
 import OfficeCardComponents from "../components/OfficeCardComponents";
+import NavbarComponent from "../components/Navbar";
 
 export default function CityDetails() {
     const { slug } = useParams<{ slug: string }>();
@@ -35,41 +36,7 @@ export default function CityDetails() {
     }
     return (
         <>
-            <nav className="bg-white">
-                <div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-                    <a href="index.html">
-                        <img src="/images/logos/logo.svg" alt="logo" />
-                    </a>
-                    <ul className="flex items-center gap-[50px] w-fit">
-                        <li>
-                            <a href="">Browse</a>
-                        </li>
-                        <li>
-                            <a href="">Popular</a>
-                        </li>
-                        <li>
-                            <a href="">Categories</a>
-                        </li>
-                        <li>
-                            <a href="">Events</a>
-                        </li>
-                        <li>
-                            <a href="view-booking-details.html">My Booking</a>
-                        </li>
-                    </ul>
-                    <a
-                        href="#"
-                        className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5"
-                    >
-                        <img
-                            src="/images/icons/call.svg"
-                            className="w-6 h-6"
-                            alt="icon"
-                        />
-                        <span className="font-semibold">Contact Us</span>
-                    </a>
-                </div>
-            </nav>
+            <NavbarComponent></NavbarComponent>
             {loading}
             {error}
             <header className="flex flex-col w-full">
@@ -108,7 +75,9 @@ export default function CityDetails() {
                 </h2>
                 <div className="grid grid-cols-3 gap-[30px]">
                     {city.officeSpace?.map((office) => (
-                        <OfficeCardComponents key={office.id} office={office} />
+                        <Link to={`/officespace/${office.slug}`} key={office.id}>
+                            <OfficeCardComponents office={office} />
+                        </Link>
                     ))}
                 </div>
             </section>
