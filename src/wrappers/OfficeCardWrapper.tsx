@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import OfficeCardComponents from "../components/OfficeCardComponents";
 import type { Office } from "../types/types";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function OfficeCardWrapper() {
     const [office, setOffice] = useState<Office[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
+
 
     useEffect(() => {
         axios.get('http://localhost/officeRentWebBE/public/api/officespaces', {
@@ -37,7 +39,9 @@ export default function OfficeCardWrapper() {
                 {error}
                 {loading}
                 {office.map((office) => (
-                    <OfficeCardComponents key={office.id} office={office} />
+                    <Link key={office.id} to={`/officespace/${office.slug}`}>
+                        <OfficeCardComponents office={office} />
+                    </Link>
                 ))}
             </div>
         </section>

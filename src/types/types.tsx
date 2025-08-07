@@ -3,6 +3,7 @@ export interface Office {
     name: string,
     slug: string,
     price: number,
+    address: string,
     is_open: boolean,
     is_full_booked: boolean
     duration: number,
@@ -22,7 +23,7 @@ export interface City {
     officeSpace: Office[]
 }
 
-interface Photo {
+export interface Photo {
     id: number,
     photo: string
 }
