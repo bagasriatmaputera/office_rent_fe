@@ -23,7 +23,6 @@ export default function OfficeDetails() {
             setError(error.message)
         })
     })
-
     if (loading) {
         return <p>Loading...</p>
     }

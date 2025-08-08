@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Browse />} />
         <Route path="/city/:slug" element={<CityDetails />} />
         <Route path="/officespace/:slug" element={<OfficeDetails />} />
-        <Route path="/office/:slug/book" element={<BookOffice />} />
+        <Route path="/officespace/:slug/book" element={<BookOffice />} />
         <Route path="/success-booking" element={<SuccessBooking />} />
         <Route path="/check-booking" element={<CheckBooking />} />
       </Routes>

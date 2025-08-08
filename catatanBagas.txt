@@ -41,4 +41,45 @@
         })
     }, [slug])
 
-  16. Implementasikan data ke CityDetails kemudian perhatikan types harus sesuai nama column pada database
+16. Implementasikan data ke CityDetails kemudian perhatikan types harus sesuai nama column pada database
+17. Pada bagian maping office photo PERHATIKAN!!! yang di mapping itu child dari interface office
+
+      {office?.photo.map((photos) => (
+          <SwiperSlide key={photos.id} className="swiper-slide !w-fit">
+              <div className="w-[700px] h-[550px] overflow-hidden">
+                  <img
+                      src={`${baseUrl}/${photos.photo}`}
+                      className="w-full h-full object-cover"
+                      alt="thumbnail"
+                  />
+              </div>
+          </SwiperSlide>
+      ))}
+
+18. Buat component navbar agar mengurangi perulanagan code
+19. Pada BookOffice buat variable yang dibutuh kan, ada beberapa yang baru saya pahami sperti
+      useNavigate() = untuk menredirect otomatis ketikan sudah success transsaction
+      formData menggunakan useState =  untuk menampung input pengguna
+      const { slug } = useParams<{ slug: string }>();
+      const [office, setOffice] = useState<Office | null>();
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState<string | null>(null);
+      const navigate = useNavigate();
+
+      const [ formData, setFormData ] = useState({
+          name:   '',
+          phone_number: '',
+          started_at: '',
+          office_space_id: '',
+          totalAmountWithUniqueCode: ''
+      })
+20. untuk validasi form gunakan zod, npm instal zod
+21. tambahkan juga variable untuk totalAmountWithUniqueCode, UniqueCode
+    const [ uniqueCode, setUniqueCode ] = useState<number>(0)
+    const [ totalAmountWithUniqueCode, setTotalAmountWithUniqueCode ] = useState<number>(0)
+22. buat UseEffect dengan slug dan pada then buat variable generateUniqueCode = Math.floor(100 + Math.random() * 900)
+    dan totalPrice 
+    const generateUniqueNumber = Math.floor(100 + Math.random() * 900);
+    const totalPrice = response.data.data.price - generateUniqueNumber;
+23. Modifikasi form dengan attribut value,dan name
+24. Buat handleChanged untuk mengatasi perubahan input
