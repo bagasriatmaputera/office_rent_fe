@@ -212,36 +212,18 @@ export default function OfficeDetails() {
                         </div>
                         <hr className="border-[#F6F5FD]" />
                         <div className="flex flex-col gap-5">
-                            <div className="flex items-center gap-3">
-                                <img
-                                    src="/public/images/icons/verify.svg"
-                                    className="w-[30px] h-[30px]"
-                                    alt="icon"
-                                />
-                                <p className="font-semibold leading-[28px]">
-                                    Mendapatkan akses pembelajaran terbaru terkait dunia startup
-                                </p>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <img
-                                    src="/public/images/icons/verify.svg"
-                                    className="w-[30px] h-[30px]"
-                                    alt="icon"
-                                />
-                                <p className="font-semibold leading-[28px]">
-                                    Mendapatkan akses pembelajaran terbaru terkait dunia startup
-                                </p>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <img
-                                    src="/public/images/icons/verify.svg"
-                                    className="w-[30px] h-[30px]"
-                                    alt="icon"
-                                />
-                                <p className="font-semibold leading-[28px]">
-                                    Mendapatkan akses pembelajaran terbaru terkait dunia startup
-                                </p>
-                            </div>
+                            {office?.benefits.map((benefits) => (
+                                <div key={benefits.id} className="flex items-center gap-3">
+                                    <img
+                                        src="/public/images/icons/verify.svg"
+                                        className="w-[30px] h-[30px]"
+                                        alt="icon"
+                                    />
+                                    <p className="font-semibold leading-[28px]">
+                                        {benefits.name}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
                         <hr className="border-[#F6F5FD]" />
                         <div className="flex flex-col gap-[14px]">

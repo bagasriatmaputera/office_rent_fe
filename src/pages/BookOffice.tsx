@@ -54,7 +54,14 @@ export default function BookOffice() {
                 setError("An unexpected error")
             }
         })
-    }, [slug])
+    }, [slug]);
+
+    const handleChanged = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name] : e.target.value
+        });
+    };
 
     if (loading) {
         return <p>Loading ...</p>
