@@ -68,18 +68,10 @@ export default function BookOffice() {
 
     // Handle input changes and clear corresponding errors
     const handleChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [e.target.name]: e.target.value
         });
-        // Clear the specific error when user starts typing
-        if (formError[name as keyof typeof formError]) {
-            setFormError({
-                ...formError,
-                [name]: ''
-            });
-        }
     };
 
     // Validate the form fields
@@ -127,14 +119,19 @@ export default function BookOffice() {
         setError(null); // Clear previous errors
 
         try {
-            const response = await axios.post(`http://localhost/officeRentWebBE/public/api/bookings`, {
+            const response = await axios.post(`http://localhost/officeRentWebBE/public/api/booking-transaction`, {
                 ...formData
+            }, {
+                headers: {
+                    'x-api-key': 'qwe23asd456#fsd$'
+                }
             });
+            console.log('Form berhasil submit:', response.data)
             // Navigate on successful booking
-            navigate('/booking-finished', { // Recommended to navigate to a success page
+            navigate('/success-booking', { // Recommended to navigate to a success page
                 state: {
                     office,
-                    bookingDetails: response.data // Corrected key
+                     BookingTransaction: response.data    // Corrected key
                 }
             });
         } catch (error: unknown) {
@@ -150,6 +147,9 @@ export default function BookOffice() {
 
     if (loading) {
         return <div className="text-center p-10">Loading ...</div>;
+    }
+    if (isLoading) {
+        return <div className="text-center p-10">Loading post data...</div>;
     }
 
     if (error && !isLoading) { // Show general error if not related to form submission

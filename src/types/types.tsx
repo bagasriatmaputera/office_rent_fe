@@ -32,7 +32,7 @@ interface Benefits {
     name: string
 }
 
-interface BookingTransaction {
+export interface BookingTransaction {
     id: number,
     name: string,
     phone_number: number,

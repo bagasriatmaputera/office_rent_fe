@@ -81,5 +81,60 @@
     dan totalPrice 
     const generateUniqueNumber = Math.floor(100 + Math.random() * 900);
     const totalPrice = response.data.data.price - generateUniqueNumber;
-23. Modifikasi form dengan attribut value,dan name
+23. Modifikasi form dengan attribut value,dan name sesuai variable formData
 24. Buat handleChanged untuk mengatasi perubahan input
+    const handleChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name] : e.target.value
+        });
+    };
+
+25. Tambahakan handleSubmit dengan async dan lakukan try and catch
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!validationForm()) return;
+
+        setIsLoading(true);
+        setError(null); // Clear previous errors
+
+        try {
+            const response = await axios.post(`http://localhost/officeRentWebBE/public/api/booking-transaction`, {
+                ...formData
+            }, {
+                headers: {
+                    'x-api-key': 'qwe23asd456#fsd$'
+                }
+            });
+            // Navigate on successful booking
+            navigate('/success-booking', { // Recommended to navigate to a success page
+                state: {
+                    office,
+                    bookingDetails: response.data.data // Corrected key
+                }
+            });
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                setError(error.response?.data?.message || error.message);
+            } else {
+                setError("An unexpected error occurred during booking.");
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+26. pada navigate dalam handleSubmint pastikan mengirim state office dan booking: response.data.data
+    navigate('/success-booking', { // Recommended to navigate to a success page
+                state: {
+                    office,
+                    bookingDetails: response.data.data // Corrected key
+                }
+            });
+
+    *pastikan pada backend controller store me-return json agar navigate bookingDetails berhasil
+
+27. Beri link pada tombol View Booking Details dan buat pagenya 
+
+28. Copas template lalu sesuaikan , hapus html for dll
