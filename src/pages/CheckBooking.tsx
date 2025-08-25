@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
+import type { BookingTransaction } from "../types/types";
 
 export default function CheckBooking() {
     const [formData, setFormData] = useState({
         booking_trx_id: '',
         phone_number: ''
     });
+
+    const baseURL = 'http://localhost/officeRentWebBE/public/storage/'
+    const [bookingTransaction, setBookingTrasaction] = useState<BookingTransaction | null>(null)
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -17,6 +21,13 @@ export default function CheckBooking() {
         })
     };
 
+    if (loading) {
+        return <p>Loading...</p>
+    }
+    if (error) {
+        return <p>Erorr: {error}</p>
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -27,13 +38,11 @@ export default function CheckBooking() {
                     'x-api-key': 'qwe23asd456#fsd$'
                 }
             });
-            console.log('Submit:', res)
+            console.log('BookingTransaction:', res.data.data)
             setLoading(true)
             setIsLoading(true)
-            setFormData({
-                booking_trx_id: '',
-                phone_number: ''
-            })
+            setBookingTrasaction(res.data.data)
+
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
                 setError(error.response?.data?.message || error.message);
@@ -120,166 +129,167 @@ export default function CheckBooking() {
                         <span className="text-nowrap">{isLoading ? 'loading' : 'Check Booking'}</span>
                     </button>
                 </form>
-                <div id="Result" className="grid grid-cols-2 gap-[30px]">
-                    <div className="flex flex-col h-fit shrink-0 rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
-                        <div className="flex items-center gap-4">
-                            <div className="flex shrink-0 w-[140px] h-[100px] rounded-[20px] overflow-hidden">
-                                <img
-                                    src="public/images/thumbnails/thumbnail-details-4.png"
-                                    className="w-full h-full object-cover"
-                                    alt="thumbnail"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <p className="font-bold text-xl leading-[30px]">
-                                    Angga Park Central <br /> Master Capitalize
-                                </p>
-                                <div className="flex items-center gap-[6px]">
-                                    <img
-                                        src="public/images/icons/location.svg"
-                                        className="w-6 h-6"
-                                        alt="icon"
-                                    />
-                                    <p className="font-semibold">Jakarta Pusat</p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr className="border-[#F6F5FD]" />
-                        <div className="flex flex-col gap-4">
-                            <h2 className="font-bold">Customer Details</h2>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold">Full Name</h3>
-                                <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
-                                    <img
-                                        src="public/images/icons/security-user-black.svg"
-                                        className="w-6 h-6"
-                                        alt="icon"
-                                    />
-                                    <p className="font-semibold">Angga Risky Setiawan</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold">
-                                    Phone Number
-                                </h3>
-                                <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
-                                    <img
-                                        src="public/images/icons/call-black.svg"
-                                        className="w-6 h-6"
-                                        alt="icon"
-                                    />
-                                    <p className="font-semibold">6289123981239</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold">
-                                    Started At
-                                </h3>
-                                <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
-                                    <img
-                                        src="public/images/icons/calendar-black.svg"
-                                        className="w-6 h-6"
-                                        alt="icon"
-                                    />
-                                    <p className="font-semibold">12 July 2024</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold">
-                                    Ended At
-                                </h3>
-                                <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
-                                    <img
-                                        src="public/images/icons/calendar-black.svg"
-                                        className="w-6 h-6"
-                                        alt="icon"
-                                    />
-                                    <p className="font-semibold">20 July 2024</p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr className="border-[#F6F5FD]" />
-                        <div className="flex items-center gap-3">
-                            <img
-                                src="public/images/icons/shield-tick.svg"
-                                className="w-[30px] h-[30px]"
-                                alt="icon"
-                            />
-                            <p className="font-semibold leading-[28px]">
-                                Privasi Anda aman bersama kami.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex flex-col h-fit shrink-0 rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
-                        <h2 className="font-bold">Order Details</h2>
-                        <div className="flex flex-col gap-5">
-                            <div className="flex items-center justify-between">
-                                <p className="font-semibold">Status Pembayaran</p>
-                                <p className="rounded-full w-fit p-[6px_16px] bg-[#FF852D] font-bold text-sm leading-[21px] text-[#F7F7FD]">
-                                    PENDING
-                                </p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <p className="font-semibold">Status Pembayaran</p>
-                                <p className="rounded-full w-fit p-[6px_16px] bg-[#0D903A] font-bold text-sm leading-[21px] text-[#F7F7FD]">
-                                    SUCCESS
-                                </p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <p className="font-semibold">Booking TRX ID</p>
-                                <p className="font-bold">FO1239812938</p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <p className="font-semibold">Duration</p>
-                                <p className="font-bold">20 Days Working</p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <p className="font-semibold">Total Amount</p>
-                                <p className="font-bold text-[22px] leading-[33px] text-[#0D903A]">
-                                    Rp 249.660
-                                </p>
-                            </div>
-                        </div>
-                        <hr className="border-[#F6F5FD]" />
-                        <h2 className="font-bold">Bonus Packages For You</h2>
-                        <div className="flex justify-between">
+                {bookingTransaction && (
+                    <div id="Result" className="grid grid-cols-2 gap-[30px]">
+                        <div className="flex flex-col h-fit shrink-0 rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
                             <div className="flex items-center gap-4">
+                                <div className="flex shrink-0 w-[140px] h-[100px] rounded-[20px] overflow-hidden">
+                                    <img
+                                        src={`${baseURL}/${bookingTransaction.office.thumbnail}`}
+                                        className="w-full h-full object-cover"
+                                        alt="thumbnail"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <p className="font-bold text-xl leading-[30px]">
+                                        {bookingTransaction.office.name}
+                                    </p>
+                                    <div className="flex items-center gap-[6px]">
+                                        <img
+                                            src="public/images/icons/location.svg"
+                                            className="w-6 h-6"
+                                            alt="icon"
+                                        />
+                                        <p className="font-semibold">{bookingTransaction.office.name}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr className="border-[#F6F5FD]" />
+                            <div className="flex flex-col gap-4">
+                                <h2 className="font-bold">Customer Details</h2>
+                                <div className="flex flex-col gap-2">
+                                    <h3 className="font-semibold">Full Name</h3>
+                                    <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
+                                        <img
+                                            src="public/images/icons/security-user-black.svg"
+                                            className="w-6 h-6"
+                                            alt="icon"
+                                        />
+                                        <p className="font-semibold">{bookingTransaction.name}</p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <h3 className="font-semibold">
+                                        Phone Number
+                                    </h3>
+                                    <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
+                                        <img
+                                            src="public/images/icons/call-black.svg"
+                                            className="w-6 h-6"
+                                            alt="icon"
+                                        />
+                                        <p className="font-semibold">{bookingTransaction.phone_number}</p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <h3 className="font-semibold">
+                                        Started At
+                                    </h3>
+                                    <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
+                                        <img
+                                            src="public/images/icons/calendar-black.svg"
+                                            className="w-6 h-6"
+                                            alt="icon"
+                                        />
+                                        <p className="font-semibold">{bookingTransaction.started_at}</p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <h3 className="font-semibold">
+                                        Ended At
+                                    </h3>
+                                    <div className="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
+                                        <img
+                                            src="public/images/icons/calendar-black.svg"
+                                            className="w-6 h-6"
+                                            alt="icon"
+                                        />
+                                        <p className="font-semibold">{bookingTransaction.ended_at}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr className="border-[#F6F5FD]" />
+                            <div className="flex items-center gap-3">
                                 <img
-                                    src="public/images/icons/coffee.svg"
-                                    className="w-[34px] h-[34px]"
+                                    src="public/images/icons/shield-tick.svg"
+                                    className="w-[30px] h-[30px]"
                                     alt="icon"
                                 />
-                                <div className="flex flex-col gap-[2px]">
-                                    <p className="font-bold">Extra Snacks</p>
-                                    <p className="text-sm leading-[21px]">Work-Life Balance</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <img
-                                    src="public/images/icons/group.svg"
-                                    className="w-[34px] h-[34px]"
-                                    alt="icon"
-                                />
-                                <div className="flex flex-col gap-[2px]">
-                                    <p className="font-bold">Free Move</p>
-                                    <p className="text-sm leading-[21px]">Anytime 24/7</p>
-                                </div>
+                                <p className="font-semibold leading-[28px]">
+                                    Privasi Anda aman bersama kami.
+                                </p>
                             </div>
                         </div>
-                        <hr className="border-[#F6F5FD]" />
-                        <a
-                            href=""
-                            className="flex items-center justify-center w-full rounded-full border border-[#000929] p-[12px_20px] gap-3 bg-white font-semibold"
-                        >
-                            <img
-                                src="public/images/icons/call-black.svg"
-                                className="w-6 h-6"
-                                alt="icon"
-                            />
-                            <span>Call Customer Service</span>
-                        </a>
+                        <div className="flex flex-col h-fit shrink-0 rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
+                            <h2 className="font-bold">Order Details</h2>
+                            <div className="flex flex-col gap-5">
+                                {!bookingTransaction.is_paid ? <div className="flex items-center justify-between">
+                                    <p className="font-semibold">Status Pembayaran</p>
+                                    <p className="rounded-full w-fit p-[6px_16px] bg-[#FF852D] font-bold text-sm leading-[21px] text-[#F7F7FD]">
+                                        PENDING
+                                    </p>
+                                </div> : <div className="flex items-center justify-between">
+                                    <p className="font-semibold">Status Pembayaran</p>
+                                    <p className="rounded-full w-fit p-[6px_16px] bg-[#0D903A] font-bold text-sm leading-[21px] text-[#F7F7FD]">
+                                        SUCCESS
+                                    </p>
+                                </div>}
+                                <div className="flex items-center justify-between">
+                                    <p className="font-semibold">Booking TRX ID</p>
+                                    <p className="font-bold">{bookingTransaction.booking_trx}</p>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <p className="font-semibold">Duration</p>
+                                    <p className="font-bold">{bookingTransaction.duration} Days Working</p>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <p className="font-semibold">Total Amount</p>
+                                    <p className="font-bold text-[22px] leading-[33px] text-[#0D903A]">
+                                        Rp {bookingTransaction.total_amount.toLocaleString('IDR')}
+                                    </p>
+                                </div>
+                            </div>
+                            <hr className="border-[#F6F5FD]" />
+                            <h2 className="font-bold">Bonus Packages For You</h2>
+                            <div className="flex justify-between">
+                                <div className="flex items-center gap-4">
+                                    <img
+                                        src="public/images/icons/coffee.svg"
+                                        className="w-[34px] h-[34px]"
+                                        alt="icon"
+                                    />
+                                    <div className="flex flex-col gap-[2px]">
+                                        <p className="font-bold">Extra Snacks</p>
+                                        <p className="text-sm leading-[21px]">Work-Life Balance</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <img
+                                        src="public/images/icons/group.svg"
+                                        className="w-[34px] h-[34px]"
+                                        alt="icon"
+                                    />
+                                    <div className="flex flex-col gap-[2px]">
+                                        <p className="font-bold">Free Move</p>
+                                        <p className="text-sm leading-[21px]">Anytime 24/7</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr className="border-[#F6F5FD]" />
+                            <a
+                                href=""
+                                className="flex items-center justify-center w-full rounded-full border border-[#000929] p-[12px_20px] gap-3 bg-white font-semibold"
+                            >
+                                <img
+                                    src="public/images/icons/call-black.svg"
+                                    className="w-6 h-6"
+                                    alt="icon"
+                                />
+                                <span>Call Customer Service</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                )}
             </section>
         </>
     );
