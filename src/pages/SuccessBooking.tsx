@@ -7,10 +7,10 @@ export default function SuccessBooking() {
     const bookingDetails = location.state?.BookingTransaction;
     const baseUrl = 'http://localhost/officeRentWebBE/public/storage/'
 
-    console.log("Office From Booking:", office)
-    console.log("BookingDetails:", bookingDetails)
+    // console.log("Office From Booking:", office)
+    // console.log("BookingDetails:", bookingDetails)
 
-    console.log('BookingDetails:', bookingDetails)
+    // console.log('BookingDetails:', bookingDetails)
     return (
         <>
             <NavbarComponent />
