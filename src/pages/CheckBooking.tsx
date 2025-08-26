@@ -38,7 +38,7 @@ export default function CheckBooking() {
                     'x-api-key': 'qwe23asd456#fsd$'
                 }
             });
-            console.log('BookingTransaction:', res.data.data)
+            // console.log('BookingTransaction:', res.data.data)
             setLoading(true)
             setIsLoading(true)
             setBookingTrasaction(res.data.data)
